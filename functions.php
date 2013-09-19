@@ -1,5 +1,5 @@
 <?php
-define("db_path", "sqlite:/db/path/emailsettings.sqlite"); // UNIX Path to your SQLite database here.
+define("db_path", "sqlite:emailsettings.sqlite"); // Modify this if your .sqlite file isn't in the same folder.
 
 function getProviders() {
 	$arraytoreturn = Array();
@@ -58,7 +58,7 @@ function getProviderByExtension($extension) {
 
 function getProviderInfo($providerid) {
 	$arraytoreturn = Array();
-	$db = new PDO('sqlite:/var/www/html/bigtelly/emailsettings.sqlite');
+	$db = new PDO(db_path);
 	$sprepare = $db->prepare('SELECT * FROM providers WHERE providerid = ? LIMIT 1');
 	$sprepare->execute(array($providerid));
 	foreach ($sprepare->fetchAll() as $row) {
