@@ -1,0 +1,22 @@
+body {
+  padding-top: 10px;
+  background: url('../statics/grey_@2X.png') repeat 0 0;        
+
+}
+.starter-template {
+  padding: 40px 15px;
+  text-align: center;
+}
+
+nav {
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.providerBox {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	
+}

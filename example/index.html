@@ -1,0 +1,143 @@
+	<!DOCTYPE html>
+	<head>
+		<!-- jQuery -->
+		<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+		<script src="https://code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+		<!-- Font Awesome --> 
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+		<!-- Site Metadata -->
+		<title>MailSettings</title>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<link href="app_config/app_style.css" rel="stylesheet">
+		
+		<!-- My Scripts -->
+		<script src="my.js"></script>
+
+	</head>
+	
+<!-- Start of Body -->
+	<body>
+		<!-- Bootstrap Navbar -->
+	    <nav class="navbar navbar-default">
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						</button>
+					<a onclick="hello()" class="navbar-brand" href="#"><i class="fa fa-envelope"></i> MailSettings</a>
+				</div>
+				<div id="navbar" class="collapse navbar-collapse">
+					<ul class="nav navbar-nav">
+					<li><a onclick="go('home', 'null')" href="#"><i class='fa fa-home'></i> Home</a></li>
+					<li><a id="btnListProviders" href="#"><i class='fa fa-list'></i> List Providers</a></li>
+					<form onsubmit="validateform(); return false;" id='emailsearchform' class="navbar-form navbar-left" role="search">
+						<div id="tag-search-form-group" class="form-group">
+							<input type="email" autocorrect="off" autocapitalize="off" name="emailsearch" id="emailsearch" class="form-control" placeholder="E-Mail Address Lookup">
+						</div>
+						<button type="submit" class="btn btn-default"><i class='fa fa-search'></i> Search!</button>
+					</form>		
+
+					</ul>
+				</div><!--/.nav-collapse -->
+			</div><!--/container-->
+    	</nav>
+    	
+		<!-- Bootstrap Container -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-8">
+
+					<!-- Homepage -->
+					<div class="aPage" id="home">
+						<h3>Welcome!</h3>
+					</div> <!-- home -->
+					
+					<!-- Provider Listings -->
+					<div class="aPage" style="display:none;" id="listProviders">
+						<p>E-Mail Providers:</p>
+						<br>
+
+						<div class="row removable providers-content" id="listProviders-providers">					
+						</div>
+					
+					</div> <!-- /listProviders -->
+					
+					
+					<!-- Thumbnail View Page -->
+					
+					<div class="aPage" style="display:none;" id="thumbnail">
+			
+						<div class="removable instagram-content" id="instagram-content-thumbnail">
+						
+						</div>
+					
+					</div> <!-- /thumbnail -->
+
+										
+				</div> <!-- /col-md-8 -->
+				
+				<div class="col-md-4">
+					<div style="display:none;" id='providerincomingserverinformation' class='sidebar sidebar-hideable panel panel-default'>
+						<div class='panel-heading'><i class='fa fa-pencil'></i> Incoming Server Information:</div>
+						<div id='placeholder-incominginfo-text' class='panel-body'>
+							
+						</div>
+					</div>
+					
+					<div style="display:none;" id='provideroutgoingserverinformation' class='sidebar sidebar-hideable panel panel-default'>
+						<div class='panel-heading'><i class='fa fa-pencil'></i> Outgoing Server Information:</div>
+						<div id='placeholder-outgoinginfo-text' class='panel-body'>
+							
+						</div>
+					</div>					
+					
+					<div style="display:none;" id='providernotes' class='sidebar sidebar-hideable panel panel-default'>
+						<div class='panel-heading'><i class='fa fa-photo'></i> Authentication & Notes:</div>
+						<div id='placeholder-notes-text' class='panel-body'>
+							
+						</div>
+					</div>					
+					
+				</div> <!-- /col-md-4 -->
+			</div> <!-- /row -->
+		<br><br>
+<!-- End Bootstrap Container -->
+		</div> <!-- /container -->
+		
+<!-- Placeholder for Bootstrap Modal -->
+<div aria-hidden="true" id="placeholder-modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			  <div class="modal-header">
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+				<h4 id='placeholder-modal-title' class="modal-title">Modal title</h4>
+			  </div>
+			  <div class="modal-body">
+				<div id='placeholder-modal-body'>
+					<p><i class="fa fa-spinner fa-pulse"></i> Loading...</p>
+				</div>
+			  </div>
+				<div class="modal-footer">
+				<button title="Close" type="button" class="btn btn-primary" data-dismiss="modal"><i class='fa fa-close'></i> Close</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal-dialog -->
+</div><!-- /.modal -->		
+
+
+<!-- End of body and document -->
+	</body>
+	</html>
