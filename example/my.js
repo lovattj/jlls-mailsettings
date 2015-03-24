@@ -5,6 +5,9 @@ function MAILSETTINGS_BASE_API() {
 	return "https://jlls.info/api/mailsettings";
 }
 
+function SHOW_LOADING_TEXT() {
+	return "<center><p class='loading-symbol'><i class=\"fa fa-spinner fa-pulse\"></i> Loading...</p></center>";
+}
 
 // Event Bindings...
 
@@ -38,11 +41,10 @@ $(document).on("submit", "#emailsearchform", function() {
 		$("#providerincomingserverinformation").show();
 		$("#provideroutgoingserverinformation").show();
 		$("#providernotes").show();
-
-		$("#providerincomingserverinformation").append("<p class='loading-symbol'><i class=\"fa fa-spinner fa-pulse\"></i> Loading...</p>");
-		$("#provideroutgoingserverinformation").append("<p class='loading-symbol'><i class=\"fa fa-spinner fa-pulse\"></i> Loading...</p>");
-		$("#providernotes").append("<p class='loading-symbol'><i class=\"fa fa-spinner fa-pulse\"></i> Loading...</p>");
-		
+		removeProviderData();
+		$("#providerincomingserverinformation").append(SHOW_LOADING_TEXT());
+		$("#provideroutgoingserverinformation").append(SHOW_LOADING_TEXT());
+		$("#providernotes").append(SHOW_LOADING_TEXT());		
 		$.when(getSettingsByEmailExtension(split[1]))
 			.done(function(x) {
 				displayProviderData(x);
@@ -53,7 +55,8 @@ $(document).on("submit", "#emailsearchform", function() {
 			.fail(function(e) {
 				$(".loading-symbol").remove();				
 				$('#tag-search-form-group').addClass("has-error");	
-				$('#emailsearch').focus();							
+				$('#emailsearch').focus();
+				alert('Sorry - settings could not be found for this e-mail address.');
 			});
 	}
 	
@@ -66,10 +69,11 @@ $(document).on("click", ".providerBox", function() {
 	$("#providerincomingserverinformation").show();
 	$("#provideroutgoingserverinformation").show();
 	$("#providernotes").show();
+	removeProviderData();
 	
-	$("#providerincomingserverinformation").append("<p class='loading-symbol'><i class=\"fa fa-spinner fa-pulse\"></i> Loading...</p>");
-	$("#provideroutgoingserverinformation").append("<p class='loading-symbol'><i class=\"fa fa-spinner fa-pulse\"></i> Loading...</p>");
-	$("#providernotes").append("<p class='loading-symbol'><i class=\"fa fa-spinner fa-pulse\"></i> Loading...</p>");
+	$("#providerincomingserverinformation").append(SHOW_LOADING_TEXT());
+	$("#provideroutgoingserverinformation").append(SHOW_LOADING_TEXT());
+	$("#providernotes").append(SHOW_LOADING_TEXT());
 	
 	$.when(getSettings(providerId)).done(function(x) {
 		displayProviderData(x);
@@ -104,6 +108,13 @@ function go(where, opt) {
 	
 	}
 	
+}
+
+function removeProviderData() {
+		document.title = "MailSettings";
+		$("#placeholder-incominginfo-text").empty();
+		$("#placeholder-outgoinginfo-text").empty();
+		$("#placeholder-notes-text").empty();
 }
 
 function displayProviderData(x) {
